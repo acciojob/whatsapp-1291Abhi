@@ -37,4 +37,20 @@ public class WhatsappRepository {
         User user=new User(name,mobile);
         userMap.put(mobile,user);
     }
+
+    public Group createGroup(List<User> users) {
+        if(users.size()==2){
+            Group group=new Group(users.get(1).getName(),2);
+            groupUserMap.put(group,users);
+            return group;
+        }
+        else{
+            Group group=new Group();
+            customGroupCount++;
+            group.setName("Group "+customGroupCount);
+            group.setNumberOfParticipants(users.size());
+            groupUserMap.put(group,users);
+            return group;
+        }
+    }
 }

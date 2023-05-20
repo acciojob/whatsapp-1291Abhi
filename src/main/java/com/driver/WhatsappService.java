@@ -31,6 +31,7 @@ public class WhatsappService {
     }
 
     public Group createGroup(List<User> users) {
-        return null;
+        return whatsappRepository.createGroup(users);
+
     }
 }
