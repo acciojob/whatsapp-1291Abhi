@@ -9,6 +9,7 @@ public class WhatsappRepository {
 
     //Assume that each user belongs to at most one group
     //You can use the below mentioned hashmaps or delete these and create your own.
+    private HashMap<String,User> userMap;
     private HashMap<Group, List<User>> groupUserMap;
     private HashMap<Group, List<Message>> groupMessageMap;
     private HashMap<Message, User> senderMap;
@@ -18,6 +19,7 @@ public class WhatsappRepository {
     private int messageId;
 
     public WhatsappRepository(){
+        this.userMap=new HashMap<String,User>();
         this.groupMessageMap = new HashMap<Group, List<Message>>();
         this.groupUserMap = new HashMap<Group, List<User>>();
         this.senderMap = new HashMap<Message, User>();
@@ -25,5 +27,14 @@ public class WhatsappRepository {
         this.userMobile = new HashSet<>();
         this.customGroupCount = 0;
         this.messageId = 0;
+    }
+
+    public void createUser(String name, String mobile) throws Exception {
+        if(userMobile.contains(mobile)){
+            throw new Exception();
+        }
+        userMobile.add(mobile);
+        User user=new User(name,mobile);
+        userMap.put(mobile,user);
     }
 }
